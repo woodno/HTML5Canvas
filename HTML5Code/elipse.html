@@ -1,0 +1,42 @@
+<canvas id="canvas" width="200" height="200" style="border:1px solid">
+</canvas>
+<script type="text/javascript">
+var canvas = document.getElementById("canvas");
+var context = canvas.getContext("2d");
+drawEllipse(.5,.5);
+drawEllipse(.8,.8);
+drawEllipse(.2,.2);
+drawCenterCircle();
+function drawEllipse(cos,sin) {
+       var xCenter = 100;
+       var yCenter = 100;
+       var xPos, yPos;
+       context.beginPath();
+       for (var i = 0 * Math.PI; i < 2 * Math.PI; i += 0.01 ) {
+              xPos = xCenter - (35 * Math.sin(i)) * 
+                Math.sin(sin * Math.PI) + (90 * Math.cos(i)) * 
+                Math.cos(cos * Math.PI);
+              yPos = yCenter + (90 * Math.cos(i)) * 
+                 Math.sin(sin * Math.PI) + (35 * Math.sin(i)) * 
+                 Math.cos(cos * Math.PI);
+              if (i == 0) {
+                     context.moveTo(xPos, yPos);
+              } else {
+                     context.lineTo(xPos, yPos);
+              }
+       }
+              context.lineWidth = 2;
+              context.strokeStyle = "#000";
+              context.stroke();
+              context.closePath();
+}
+function drawCircle() {
+       context.beginPath();
+       context.arc(100, 100, 10, 0, 2 * Math.PI, false);
+       context.fillStyle = "#000";
+       context.fill();
+       context.lineWidth = 5;
+       context.strokeStyle = "#000";
+       context.stroke();
+}
+</script>
